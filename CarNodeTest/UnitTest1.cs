@@ -7,27 +7,25 @@ namespace CarNodeTest
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void FindPathGraph()
         {
-            
-            //var pathFinder = new PathFinder();
+            //2 3 5 4 6
+            List<Tuple<string, string, int>> nodes = new List<Tuple<string, string, int>>();
+            nodes.Add(new Tuple<string, string, int>((2).ToString(), (3).ToString(), 5));
+            nodes.Add(new Tuple<string, string, int>((3).ToString(), (5).ToString(), 3));
+            nodes.Add(new Tuple<string, string, int>((4).ToString(), (6).ToString(), 4));
+            nodes.Add(new Tuple<string, string, int>((5).ToString(), (4).ToString(), 4));
+            nodes.Add(new Tuple<string, string, int>((6).ToString(), (0).ToString(), 4));
 
-            //var roads = new List<Tuple<string, string, int>>
-            //        {
-            //            new Tuple<string, string, int>("A", "B", 1),
-            //            new Tuple<string, string, int>("A", "C", 5),
-            //            new Tuple<string, string, int>("B", "D", 3),
-            //            new Tuple<string, string, int>("C", "D", 4)
-            //        };
 
-            //var route = pathFinder.GetShortPath("A", "D", roads);
+            var path = CarNode.Alg.GetShortPath("2", "6", nodes);
 
-            //Assert.IsNotNull(route);
-            //var routeList = route.ToList();
-            //Assert.AreEqual(3, routeList.Count);
-            //Assert.AreEqual("A", routeList[0]);
-            //Assert.AreEqual("B", routeList[1]);
-            //Assert.AreEqual("D", routeList[2]);
+            Assert.AreEqual(5, path.Count);
+            Assert.AreEqual((2).ToString(), path[0]);
+            Assert.AreEqual((3).ToString(), path[1]);
+            Assert.AreEqual((5).ToString(), path[2]);
+            Assert.AreEqual((4).ToString(), path[3]);
+            Assert.AreEqual((6).ToString(), path[4]);
         }
     }
 }
